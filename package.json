@@ -1,5 +1,5 @@
 {
-  "homepage": "http://edward122.github.io/NoteTaker",
+  "homepage": "http://edward122.github.io/NoteTaker/",
   "name": "react-javascript",
   "version": "1.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build", 
-    "deploy": "gh-pages -d dist -r https://$GH_TOKEN@github.com/edward122/NoteTaker.git",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
     "preview": "vite preview"
   },
