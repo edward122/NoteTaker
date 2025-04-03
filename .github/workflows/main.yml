@@ -11,30 +11,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install Dependencies
         run: npm install
-      
+
       - name: List node_modules/.bin
         run: ls -la node_modules/.bin
-      
+
       - name: Verify Vite Installation
         run: npx vite --version
-      
+
       - name: Build the App
         run: npm run build
-      
+
       - name: Set Git Identity
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-      
+
       - name: Deploy to GitHub Pages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
+        run: npx gh-pages -d dist -r https://${GH_TOKEN}@github.com/edward122/NoteTaker.git
