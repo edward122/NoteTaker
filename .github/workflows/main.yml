@@ -20,12 +20,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: List node_modules/.bin
-        run: ls -la node_modules/.bin
-
-      - name: Verify Vite Installation
-        run: npx vite --version
-
       - name: Build the App
         run: npm run build
 
@@ -34,7 +28,11 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
 
-      - name: Deploy to GitHub Pages
+      - name: Configure Git to Use GH_TOKEN
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx gh-pages -d dist -r https://${GH_TOKEN}@github.com/edward122/NoteTaker.git
+        run: |
+          git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
+
+      - name: Deploy to GitHub Pages
+        run: npx gh-pages -d dist
