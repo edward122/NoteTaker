@@ -18,12 +18,16 @@ jobs:
           node-version: '16'
       
       - name: Install Dependencies
-        run: npm install
-        env:
-          NODE_ENV: development
+        run: npm ci
+      
+      - name: List node_modules/.bin
+        run: ls -la node_modules/.bin
+      
+      - name: Verify Vite Installation
+        run: npx vite --version
       
       - name: Build the App
-        run: npx vite build
+        run: npm run build
       
       - name: Deploy to GitHub Pages
         run: npm run deploy
